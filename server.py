@@ -15,7 +15,7 @@ from PyPDF2 import PdfFileReader
 import urllib
 
 db = "storage.db"
-UPLOAD_FOLDER = '/home/user/Desktop/CSA_Vuln_App/VulnApp/uploads'
+UPLOAD_FOLDER = '/home/vuln-webapp/uploads'
 ALLOWED_EXTENSIONS = set(['pdf'])
 app = Flask(__name__)
 
