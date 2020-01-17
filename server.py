@@ -186,7 +186,7 @@ def upload_file():
                 print(mimetype)
                 if(mimetype == "application/pdf"):
                     try:
-                        newpdf = PdfFileReader(file(file, "rb"))
+                        newpdf = PdfFileReader(file)
                         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
                         conn = sqlite3.connect('storage.db')
                         c=conn.cursor()
