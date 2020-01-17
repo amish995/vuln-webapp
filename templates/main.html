@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Main Page</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+  <h2>Main Page</h2>
+  <p>Welcome to the main page, {{name|safe}}! Click here to <a href=/logout>logout</a></p>
+  {% if rval %}<p> {{rval}}</p>{% endif %}
+</div>
+
+<div class="container">
+  <h3>Post News item</h3>
+  <form action="/news" method="get">
+    <div class="form-group">
+      <input type="text" name="text" class="form-control" id="text" placeholder="Enter news">
+    </div>
+    <button type="submit" class="btn btn-default">Submit</button>
+  </form> {{error2}}
+</div>
+
+<br>
+<div class="container">
+  <form action="/upload" method="get">
+    <button type="submit" class="btn btn-default">Upload a file</button>
+  </form> {{error2}}
+</div>
+
+<br>
+
+<div class="container">
+  <h3>Access Handler</h3>
+  <form action="/handler" method="post">
+    <div class="form-group">
+      <input type="text" name="target" class="form-control" id="target" placeholder="Enter URL">
+    </div>
+    <button type="submit" class="btn btn-default">Submit</button>
+  </form> {{error3|safe}}
+</div>
+
+<div class="container">
+  <h3>Ping a host</h3>
+  <form action="/ping" method="post">
+    <div class="form-group">
+      <input type="text" name="target" class="form-control" id="target" placeholder="Enter IP to ping">
+    </div>
+    <button type="submit" class="btn btn-default">Submit</button>
+  </form> {{error4|safe}}
+</div>
+
+
+{% if news%}
+<div class="container">
+  <h3>News list</h3>
+  <ul>
+{% for item in news -%}
+    <li>{{ item[0] }} says: {{item[1]|safe}}</li>
+{%- endfor %}
+</ul>
+</div>
+{% endif %}
+
+{% if files%}
+<div class="container">
+  <h3>File list</h3>
+  <ul>
+{% for item in files -%}
+    <li>{{ item[0] }} uploaded: {{item[1]|safe}}</li>
+{%- endfor %}
+</ul>
+</div>
+{% endif %}
+</body>
+</html>
